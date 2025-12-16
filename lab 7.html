@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>Лабораторна №7 – Мороз Євгеній, 302-ТН, Комп'ютерні науки</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:20px;background:#f7f7f7}
+h1{text-align:center;margin-bottom:25px}
+button.accordion{
+  width:100%;background:#0077cc;color:#fff;border:none;padding:12px;text-align:left;font-size:16px;cursor:pointer;margin-bottom:4px;border-radius:4px}
+button.accordion:hover{background:#005fa3}
+div.panel{
+  padding:0 15px;background:white;display:none;border-radius:4px;margin-bottom:10px;overflow:hidden}
+table{border-collapse:collapse;margin-top:8px}
+td,th{border:1px solid #ccc;padding:6px 10px}
+input[type=text],input[type=password],input[type=date],input[type=tel],input[type=email],textarea,select{
+  width:100%;box-sizing:border-box;padding:6px}
+pre{font-family:inherit;margin:0}
+.output{margin-top:10px;padding:10px;background:#e6f5ff;border-left:5px solid #0077cc;white-space:pre-wrap}
+</style>
+</head>
+<body>
+
+<h1>Лабораторна робота №7 – єдиний робочий файл</h1>
+
+<!-- ========== 1. Базова форма ========== -->
+<button class="accordion">Завдання 1. Базова форма студента</button>
+<div class="panel">
+  <form id="f1" onsubmit="return showRes(1)">
+    <pre>
+Ваше ім'я: <input name="name" type="text" maxlength="40" size="40" required>
+Ваша стать: <input type="radio" name="pol" value="male" required>Чоловіча
+           <input type="radio" name="pol" value="female">Жіноча
+
+На якому курсі Ви навчаєтесь?
+<select name="curs">
+  <option value="1" selected>Перший</option>
+  <option value="2">Другий</option>
+  <option value="3">Третій</option>
+  <option value="4">Четвертий</option>
+  <option value="5">П'ятий</option>
+</select>
+
+Які дисципліни ви вивчаєте?
+<input type="checkbox" name="web" value="yes" checked>WEB-програмування
+<input type="checkbox" name="eldinam" value="yes">Технічна електродинаміка
+
+Напишіть декілька слів про себе:
+    </pre>
+    <textarea name="about" rows="6" cols="60" wrap="off"></textarea><br>
+    <input type="submit" value="Відіслати дані">
+    <input type="reset" value="Очистити форму">
+    <input type="file" name="friend" size="50" accept="image/*">
+  </form>
+  <div id="res1" class="output" style="display:none"></div>
+</div>
+
+<!-- ========== 2. Всі поля ========== -->
+<button class="accordion">Завдання 2. Всі елементи форм</button>
+<div class="panel">
+  <form id="f2" onsubmit="return showRes(2)">
+    Ім'я: <input type="text" name="t1" size="25" maxlength="30"><br><br>
+    Пароль: <input type="password" name="p1" size="20"><br><br>
+    Відгук:<br>
+    <textarea name="ta1" rows="4" cols="40" wrap="virtual"></textarea><br><br>
+
+    Оберіть мови програмування:<br>
+    <label><input type="checkbox" name="lang" value="cpp"> C++</label><br>
+    <label><input type="checkbox" name="lang" value="java"> Java</label><br>
+    <label><input type="checkbox" name="lang" value="py"> Python</label><br><br>
+
+    Стать:<br>
+    <label><input type="radio" name="gender" value="m"> Чол.</label>
+    <label><input type="radio" name="gender" value="f"> Жін.</label><br><br>
+
+    Улюблений напій:
+    <select name="drink">
+      <option value="c">Кава</option>
+      <option value="t">Чай</option>
+      <option value="w">Вода</option>
+    </select><br><br>
+
+    Улюблені кольори (Ctrl для множ. вибору):<br>
+    <select name="colors" multiple size="4">
+      <option value="r">Червоний</option>
+      <option value="g">Зелений</option>
+      <option value="b">Синій</option>
+      <option value="y">Жовтий</option>
+    </select><br><br>
+
+    Прикріпити резюме: <input type="file" name="cv"><br><br>
+
+    <input type="submit" value="Надіслати">
+    <input type="reset" value="Скинути">
+    <input type="button" value="Показати дату" onclick="alert(new Date());">
+  </form>
+  <div id="res2" class="output" style="display:none"></div>
+</div>
+
+<!-- ========== 3. Анкета ========== -->
+<button class="accordion">Завдання 3. Анкета студента</button>
+<div class="panel">
+  <form id="f3" onsubmit="return showRes(3)">
+    <table>
+      <tr><td>Прізвище, ім’я, по батькові</td><td><input type="text" name="fio" required></td></tr>
+      <tr><td>Дата народження</td><td><input type="date" name="bday" required></td></tr>
+      <tr><td>Адреса проживання</td><td><textarea name="addr" rows="2" cols="40"></textarea></td></tr>
+      <tr><td>Телефон</td><td><input type="tel" name="phone"></td></tr>
+      <tr><td>E-mail</td><td><input type="email" name="mail"></td></tr>
+      <tr><td>Освіта</td>
+          <td><select name="edu">
+                <option value="hs">Середня</option>
+                <option value="col">Коледж</option>
+                <option value="bac">Бакалавр</option>
+                <option value="mas">Магістр</option>
+              </select></td></tr>
+      <tr><td>Стать</td>
+          <td><label><input type="radio" name="g" value="m"> Чол.</label>
+              <label><input type="radio" name="g" value="f"> Жін.</label></td></tr>
+      <tr><td>Додаткова інформація</td><td><textarea name="info" rows="4" cols="40"></textarea></td></tr>
+      <tr><td colspan="2" style="text-align:center">
+            <input type="submit" value="Зберегти">
+            <input type="reset" value="Очистити">
+          </td></tr>
+    </table>
+  </form>
+  <div id="res3" class="output" style="display:none"></div>
+</div>
+
+<!-- ========== 4. Замовлення ========== -->
+<button class="accordion">Завдання 4. Замовлення товару</button>
+<div class="panel">
+  <form id="f4" onsubmit="return showRes(4)">
+    <label>Номер банківського рахунку: <input type="text" name="acc" required></label><br><br>
+    <label>Особистий номер користувача: <input type="text" name="uid" required></label><br><br>
+
+    Оберіть товар(и):<br>
+    <label><input type="checkbox" name="goods" value="laptop"> Ноутбук</label><br>
+    <label><input type="checkbox" name="goods" value="mouse"> Мишка</label><br>
+    <label><input type="checkbox" name="goods" value="keyboard"> Клавіатура</label><br><br>
+
+    Спосіб оплати:<br>
+    <label><input type="radio" name="pay" value="cash" required> Готівковий</label><br>
+    <label><input type="radio" name="pay" value="cashless"> Безготівковий</label><br><br>
+
+    Бажаю додатково отримати:<br>
+    <label><input type="checkbox" name="extra" value="balance"> Дані про залишки на рахунку</label><br>
+    <label><input type="checkbox" name="extra" value="history"> Список останніх виплат</label><br><br>
+
+    Коментар до замовлення:<br>
+    <textarea name="comment" rows="4" cols="50"></textarea><br><br>
+
+    <input type="submit" value="Оформити замовлення">
+    <input type="reset" value="Скинути">
+  </form>
+  <div id="res4" class="output" style="display:none"></div>
+</div>
+
+<script>
+/* ---------- акордеон ---------- */
+var acc=document.querySelectorAll(".accordion");
+for(var i=0;i<acc.length;i++){
+  acc[i].addEventListener("click",function(){
+    this.classList.toggle("active");
+    var panel=this.nextElementSibling;
+    panel.style.display=(panel.style.display==="block")?"none":"block";
+  });
+}
+/* ---------- збір даних + показ ---------- */
+function showRes(n){
+  var frm=document.getElementById('f'+n);
+  var data=new FormData(frm);
+  var out='Отримані дані:\n';
+  for(var [k,v] of data.entries()){
+    out+=`${k}: ${v}\n`;
+  }
+  var box=document.getElementById('res'+n);
+  box.textContent=out;
+  box.style.display='block';
+  return false;   /* зупиняємо реальну відправку */
+}
+</script>
+</body>
+</html>

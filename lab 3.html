@@ -1,0 +1,1152 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Портфоліо групи 302 ТН — Інтерактивний сайт</title>
+  <meta name="description"
+    content="Односторінковий сайт з годинником, галереєю, розкладом, формою, темами, каруселлю, todo та пошуком." />
+  <style>
+    /* =========================
+       Базові змінні теми
+       ========================= */
+    :root {
+      --bg: #0f1221;
+      --panel: #161a2f;
+      --text: #e8ecf1;
+      --muted: #a7b1c0;
+      --accent: #7c5cff;
+      --accent-2: #19c37d;
+      --danger: #ff5864;
+      --warning: #ffc857;
+      --border: #262b4a;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-lg: 22px;
+      --space: 14px;
+      --space-lg: 26px;
+      --maxw: 1100px;
+      --trans: 180ms ease;
+      --grid-gap: 18px;
+      --link: #8ad8ff;
+      --link-hover: #a4e3ff;
+      --focus: #ffd166;
+      --gradient: radial-gradient(1200px 800px at 0% 0%, rgba(124, 92, 255, 0.15), transparent 60%),
+        radial-gradient(1000px 800px at 100% 0%, rgba(25, 195, 125, 0.12), transparent 60%),
+        radial-gradient(1200px 900px at 50% 100%, rgba(138, 216, 255, 0.10), transparent 60%);
+    }
+
+    .light {
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2335;
+      --muted: #47506a;
+      --accent: #5a3cff;
+      --accent-2: #0aa56b;
+      --danger: #e84c57;
+      --warning: #e5a637;
+      --border: #e6e9f3;
+      --shadow: 0 10px 25px rgba(4, 18, 74, 0.08);
+      --link: #106ba3;
+      --link-hover: #0c87cc;
+      --focus: #ff9f1c;
+      --gradient: radial-gradient(1200px 800px at 0% 0%, rgba(90, 60, 255, 0.10), transparent 60%),
+        radial-gradient(1000px 800px at 100% 0%, rgba(10, 165, 107, 0.10), transparent 60%),
+        radial-gradient(1200px 900px at 50% 100%, rgba(16, 107, 163, 0.08), transparent 60%);
+    }
+
+    /* =========================
+       Базові стилі сторінки
+       ========================= */
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      letter-spacing: 0.2px;
+      min-height: 100%;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: var(--gradient);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+      transition: color var(--trans);
+    }
+
+    a:hover {
+      color: var(--link-hover);
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: saturate(150%) blur(10px);
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.12)), var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 64px;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .brand .logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+    }
+
+    .nav-links a:focus-visible {
+      outline: none;
+      border-color: var(--focus);
+      box-shadow: 0 0 0 4px color-mix(in oklab, var(--focus) 30%, transparent);
+    }
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--muted);
+      cursor: pointer;
+      transition: transform var(--trans), background var(--trans), color var(--trans);
+    }
+
+    .theme-toggle:hover {
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    /* =========================
+       Герой-блок
+       ========================= */
+    .hero {
+      padding: 40px 0 14px;
+    }
+
+    .hero-card {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: var(--grid-gap);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-content {
+      padding: 28px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px 0;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .hero-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform var(--trans), box-shadow var(--trans), background var(--trans);
+      box-shadow: 0 8px 20px rgba(124, 92, 255, 0.35);
+    }
+
+    .btn.secondary {
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px)
+    }
+
+    .btn:active {
+      transform: translateY(0) scale(0.99)
+    }
+
+    .btn:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px color-mix(in oklab, var(--focus) 30%, transparent);
+    }
+
+    .hero-side {
+      padding: 18px;
+      background:
+        radial-gradient(300px 200px at 80% 20%, rgba(124, 92, 255, 0.18), transparent 60%),
+        radial-gradient(240px 180px at 30% 80%, rgba(25, 195, 125, 0.16), transparent 60%),
+        linear-gradient(180deg, color-mix(in oklab, var(--panel) 70%, transparent), transparent 100%);
+      border-left: 1px dashed var(--border);
+      display: grid;
+      align-content: center;
+      gap: 12px;
+    }
+
+    .clock {
+      font-family: ui-monospace, Menlo, Monaco, "SFMono-Regular", Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: clamp(18px, 3.2vw, 28px);
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .date {
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* =========================
+       Секції
+       ========================= */
+    section {
+      margin: 26px 0;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .section-title {
+      margin: 0 0 12px 0;
+      font-size: 22px;
+    }
+
+    .grid {
+      display: grid;
+      gap: var(--grid-gap);
+    }
+
+    .grid.cols-2 {
+      grid-template-columns: repeat(2, 1fr)
+    }
+
+    .grid.cols-3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .grid.cols-4 {
+      grid-template-columns: repeat(4, 1fr)
+    }
+
+    /* =========================
+       Розклад і пошук
+       ========================= */
+    .schedule-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .input,
+    .select {
+      background: color-mix(in oklab, var(--panel) 70%, black 10%);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      outline: none;
+      transition: border var(--trans), background var(--trans);
+    }
+
+    .input:focus,
+    .select:focus {
+      border-color: var(--focus);
+      background: color-mix(in oklab, var(--panel) 85%, black 0%);
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .table th,
+    .table td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .table th {
+      background: color-mix(in oklab, var(--panel) 85%, black 6%);
+      color: var(--muted)
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: color-mix(in oklab, var(--accent) 14%, transparent);
+      color: var(--text);
+      border: 1px solid color-mix(in oklab, var(--accent) 60%, var(--border));
+      font-size: 12px;
+    }
+
+    /* =========================
+       Галерея + лайтбокс + карусель
+       ========================= */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--grid-gap);
+    }
+
+    .card {
+      background: color-mix(in oklab, var(--panel) 95%, black 4%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform var(--trans), box-shadow var(--trans);
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-4px)
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block
+    }
+
+    .card .info {
+      padding: 12px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      background: rgba(0, 0, 0, 0.65);
+      place-items: center;
+      z-index: 1000;
+      padding: 18px;
+    }
+
+    .lightbox.open {
+      display: grid
+    }
+
+    .lightbox-content {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      max-width: min(900px, 95vw);
+      width: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      overflow: hidden;
+    }
+
+    .lightbox-header,
+    .lightbox-footer {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .lightbox-footer {
+      border-bottom: none;
+      border-top: 1px solid var(--border)
+    }
+
+    .lightbox-body {
+      padding: 12px;
+      display: grid;
+      place-items: center;
+      gap: 10px;
+    }
+
+    .lightbox-body img {
+      max-height: 60vh;
+      width: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      cursor: pointer;
+      transition: transform var(--trans), background var(--trans);
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-1px)
+    }
+
+    /* =========================
+       TODO-список
+       ========================= */
+    .todo {
+      display: grid;
+      gap: 12px;
+    }
+
+    .todo-inputs {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+    }
+
+    .todo-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .todo-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: color-mix(in oklab, var(--panel) 95%, black 4%);
+    }
+
+    .todo-item.done {
+      opacity: 0.75
+    }
+
+    .todo-item .title {
+      font-weight: 600
+    }
+
+    .todo-item .meta {
+      font-size: 12px;
+      color: var(--muted)
+    }
+
+    /* =========================
+       Форма та повідомлення
+       ========================= */
+    .form-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1
+    }
+
+    .msg {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      display: none;
+    }
+
+    .msg.show {
+      display: block
+    }
+
+    .msg.success {
+      background: color-mix(in oklab, var(--accent-2) 14%, transparent);
+      border-color: color-mix(in oklab, var(--accent-2) 40%, var(--border))
+    }
+
+    .msg.error {
+      background: color-mix(in oklab, var(--danger) 14%, transparent);
+      border-color: color-mix(in oklab, var(--danger) 40%, var(--border))
+    }
+
+    /* =========================
+       Футер
+       ========================= */
+    footer {
+      margin: 30px 0 50px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* =========================
+       Адаптивність
+       ========================= */
+    @media (max-width: 960px) {
+      .hero-card {
+        grid-template-columns: 1fr
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .grid.cols-3 {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .grid.cols-4 {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav {
+        flex-wrap: wrap
+      }
+
+      .gallery {
+        grid-template-columns: 1fr
+      }
+
+      .grid.cols-3,
+      .grid.cols-4,
+      .grid.cols-2 {
+        grid-template-columns: 1fr
+      }
+
+      .hero {
+        padding-top: 22px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Основна навігація">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">302</div>
+        <div>Група 302 ТН</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">Про нас</a>
+        <a href="#schedule">Розклад</a>
+        <a href="#gallery">Галерея</a>
+        <a href="#todo">Завдання</a>
+        <a href="#contact">Контакти</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Перемкнути тему" title="Тема">🌙 Тема</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Герой-блок -->
+    <section class="hero" id="about">
+      <div class="hero-card">
+        <div class="hero-content">
+          <h1>Портфоліо групи 302 ТН</h1>
+          <p>Ми — команда, яка вірить у практику, взаємопідтримку і в те, що ідеї стають реальними, коли за них берешся
+            всерйоз.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#gallery">📷 Дивитись роботи</a>
+            <a class="btn secondary" href="#contact">✉️ Написати нам</a>
+          </div>
+        </div>
+        <aside class="hero-side">
+          <div class="clock" id="clock" aria-live="polite">00:00:00</div>
+          <div class="date" id="date">Середа, 17 вересня</div>
+          <div class="chip" title="Надихайся і дій!">⚡ Фокус: маленькі кроки щодня</div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Розклад -->
+    <section id="schedule" class="panel" aria-labelledby="schedule-title">
+      <h2 class="section-title" id="schedule-title">Розклад та пошук</h2>
+      <div class="schedule-controls">
+        <input class="input" id="searchInput" type="search" placeholder="Пошук за предметом або викладачем..."
+          aria-label="Пошук у розкладі" />
+        <select class="select" id="dayFilter" aria-label="Фільтр за днем">
+          <option value="all">Всі дні</option>
+          <option value="Понеділок">Понеділок</option>
+          <option value="Вівторок">Вівторок</option>
+          <option value="Середа">Середа</option>
+          <option value="Четвер">Четвер</option>
+          <option value="П’ятниця">П’ятниця</option>
+        </select>
+        <button class="btn secondary" id="resetSchedule">Скинути</button>
+      </div>
+      <div style="overflow:auto">
+        <table class="table" aria-describedby="schedule-desc">
+          <caption id="schedule-desc" style="caption-side: bottom; padding: 8px; color: var(--muted)">Фільтруй і шукай,
+            щоб швидко знайти пару.</caption>
+          <thead>
+            <tr>
+              <th scope="col">День</th>
+              <th scope="col">Час</th>
+              <th scope="col">Предмет</th>
+              <th scope="col">Викладач</th>
+              <th scope="col">Аудиторія</th>
+            </tr>
+          </thead>
+          <tbody id="scheduleBody">
+            <!-- Розклад заповнюється JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Галерея -->
+    <section id="gallery" class="panel" aria-labelledby="gallery-title">
+      <h2 class="section-title" id="gallery-title">Галерея студентських робіт</h2>
+      <div class="gallery" id="galleryGrid" aria-live="polite">
+        <!-- Картки додаються JS -->
+      </div>
+    </section>
+
+    <!-- TODO -->
+    <section id="todo" class="panel" aria-labelledby="todo-title">
+      <h2 class="section-title" id="todo-title">Особисті завдання</h2>
+      <div class="todo">
+        <div class="todo-inputs">
+          <input class="input" id="todoTitle" type="text" placeholder="Нове завдання..." aria-label="Назва завдання" />
+          <button class="btn" id="addTodo">Додати</button>
+        </div>
+        <div id="todoList" class="todo-list" aria-live="polite">
+          <!-- Елементи додаються JS -->
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap">
+          <button class="btn secondary" id="clearDone">Очистити виконані</button>
+          <button class="btn secondary" id="exportTodos">Експорт</button>
+          <button class="btn secondary" id="importTodos">Імпорт</button>
+          <input class="input" id="importInput" type="file" accept="application/json" style="display:none" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Форма -->
+    <section id="contact" class="panel" aria-labelledby="contact-title">
+      <h2 class="section-title" id="contact-title">Зв’язок з нами</h2>
+      <div class="msg" id="formMsg" role="status" aria-live="polite"></div>
+      <form id="contactForm" novalidate>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="name">Ім’я</label>
+            <input class="input" id="name" name="name" required placeholder="Твоє ім’я" />
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input class="input" id="email" name="email" type="email" required placeholder="name@example.com" />
+          </div>
+          <div class="form-field full">
+            <label for="subject">Тема</label>
+            <input class="input" id="subject" name="subject" placeholder="Про що йде мова?" />
+          </div>
+          <div class="form-field full">
+            <label for="message">Повідомлення</label>
+            <textarea class="input" id="message" name="message" rows="4" required
+              placeholder="Напиши все, що важливо"></textarea>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; margin-top:12px">
+          <button class="btn" type="submit">Надіслати</button>
+          <button class="btn secondary" type="reset">Очистити</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Модальне вікно (лайтбокс для галереї) -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle"
+      aria-describedby="lightboxDesc">
+      <div class="lightbox-content">
+        <div class="lightbox-header">
+          <div id="lightboxTitle">Перегляд зображення</div>
+          <button class="icon-btn" id="closeLightbox" aria-label="Закрити">✖</button>
+        </div>
+        <div class="lightbox-body">
+          <img id="lightboxImg" alt="Зображення галереї" src="" />
+          <div id="lightboxDesc" class="tag">Опис зображення</div>
+          <div class="carousel-controls">
+            <button class="icon-btn" id="prevImg" aria-label="Попереднє">⟨</button>
+            <button class="icon-btn" id="nextImg" aria-label="Наступне">⟩</button>
+          </div>
+        </div>
+        <div class="lightbox-footer">
+          <span class="tag" id="lightboxIndex">1/1</span>
+          <a class="btn secondary" id="openOriginal" href="#" target="_blank" rel="noopener">Відкрити оригінал</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 302 ТН. Тримай курс на те, що резонує. Маленькі кроки, великі зміни.
+  </footer>
+
+  <script>
+    // =========================
+    // Утиліти
+    // =========================
+    const $ = (sel, root = document) => root.querySelector(sel);
+    const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+    const formatTime = (d) => {
+      const pad = (n) => String(n).padStart(2, "0");
+      return pad(d.getHours()) + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds());
+    };
+    const formatDateUa = (d) => {
+      const days = ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П’ятниця", "Субота"];
+      const months = ["січня", "лютого", "березня", "квітня", "травня", "червня", "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"];
+      return days[d.getDay()] + ", " + d.getDate() + " " + months[d.getMonth()] + " " + d.getFullYear();
+    };
+
+    const save = (key, value) => localStorage.setItem(key, JSON.stringify(value));
+    const load = (key, fallback) => {
+      try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+      catch { return fallback; }
+    };
+
+    // =========================
+    // Тема
+    // =========================
+    const themeToggle = $("#themeToggle");
+    const applyTheme = (mode) => {
+      document.documentElement.classList.toggle("light", mode === "light");
+      themeToggle.textContent = (mode === "light" ? "🌞 Світла" : "🌙 Темна") + " тема";
+    };
+    let theme = load("theme", "dark");
+    applyTheme(theme);
+    themeToggle.addEventListener("click", () => {
+      theme = theme === "light" ? "dark" : "light";
+      save("theme", theme);
+      applyTheme(theme);
+    });
+
+    // =========================
+    // Годинник і дата
+    // =========================
+    const clockEl = $("#clock");
+    const dateEl = $("#date");
+    const tick = () => {
+      const now = new Date();
+      if (clockEl) clockEl.textContent = formatTime(now);
+      if (dateEl) dateEl.textContent = formatDateUa(now);
+    };
+    tick();
+    setInterval(tick, 1000);
+
+    // =========================
+    // Розклад із фільтрами
+    // =========================
+    const schedule = [
+      { day: "Понеділок", time: "08:30", subject: "Математика", teacher: "Іваненко І.І.", room: "A-101" },
+      { day: "Понеділок", time: "10:15", subject: "Програмування", teacher: "Петренко П.П.", room: "B-207" },
+      { day: "Понеділок", time: "12:00", subject: "Англійська мова", teacher: "Сидоренко С.С.", room: "C-303" },
+      { day: "Вівторок", time: "08:30", subject: "Алгоритми", teacher: "Мельник М.М.", room: "A-104" },
+      { day: "Вівторок", time: "10:15", subject: "Бази даних", teacher: "Коваль О.О.", room: "B-209" },
+      { day: "Вівторок", time: "12:00", subject: "Фізика", teacher: "Лисенко Л.Л.", room: "D-112" },
+      { day: "Середа", time: "08:30", subject: "Комп’ютерні мережі", teacher: "Гнатюк Г.Г.", room: "Net-1" },
+      { day: "Середа", time: "10:15", subject: "Операційні системи", teacher: "Поліщук П.П.", room: "OS-2" },
+      { day: "Середа", time: "12:00", subject: "Дискретна математика", teacher: "Романюк Р.Р.", room: "Math-7" },
+      { day: "Четвер", time: "08:30", subject: "Веб-розробка", teacher: "Данилюк Д.Д.", room: "Web-Lab" },
+      { day: "Четвер", time: "10:15", subject: "Проєктний практикум", teacher: "Савчук С.С.", room: "Open-3" },
+      { day: "П’ятниця", time: "09:00", subject: "ШІ та ML", teacher: "Ткаченко Т.Т.", room: "AI-2" },
+      { day: "П’ятниця", time: "10:50", subject: "UI/UX", teacher: "Чумак Ч.Ч.", room: "Design-1" }
+    ];
+
+    const scheduleBody = $("#scheduleBody");
+    const searchInput = $("#searchInput");
+    const dayFilter = $("#dayFilter");
+    const resetSchedule = $("#resetSchedule");
+
+    const renderSchedule = (rows) => {
+      scheduleBody.innerHTML = rows.map(r => `
+        <tr>
+          <td>${r.day}</td>
+          <td><span class="chip">⏰ ${r.time}</span></td>
+          <td>${r.subject}</td>
+          <td>${r.teacher}</td>
+          <td>${r.room}</td>
+        </tr>
+      `).join("");
+    };
+
+    const filterSchedule = () => {
+      const q = (searchInput.value || "").toLowerCase().trim();
+      const day = dayFilter.value;
+      const filtered = schedule.filter(r => {
+        const matchesDay = day === "all" || r.day === day;
+        const inText = [r.subject, r.teacher, r.room, r.day].join(" ").toLowerCase().includes(q);
+        return matchesDay && inText;
+      });
+      renderSchedule(filtered);
+    };
+
+    renderSchedule(schedule);
+    searchInput.addEventListener("input", filterSchedule);
+    dayFilter.addEventListener("change", filterSchedule);
+    resetSchedule.addEventListener("click", () => {
+      searchInput.value = "";
+      dayFilter.value = "all";
+      renderSchedule(schedule);
+    });
+
+    // =========================
+    // Галерея, лайтбокс, карусель
+    // =========================
+    const galleryItems = [
+      { src: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&dpr=1", title: "Лендінг курсу", tag: "Web" },
+      { src: "https://images.pexels.com/photos/590041/pexels-photo-590041.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&dpr=1", title: "Плакат події", tag: "Design" },
+      { src: "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&dpr=1", title: "Логотип клубу", tag: "Brand" },
+      { src: "https://images.pexels.com/photos/669619/pexels-photo-669619.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&dpr=1", title: "Дашборд аналітики", tag: "Data" },
+      { src: "https://images.pexels.com/photos/3184460/pexels-photo-3184460.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&dpr=1", title: "Грайливий UI", tag: "UI" },
+      { src: "https://images.pexels.com/photos/3861950/pexels-photo-3861950.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&dpr=1", title: "Мобільний прототип", tag: "UX" }
+    ];
+
+    const galleryGrid = $("#galleryGrid");
+    const renderGallery = () => {
+      galleryGrid.innerHTML = galleryItems.map((it, i) => `
+        <article class="card" data-index="${i}" tabindex="0" aria-label="Переглянути ${it.title}">
+          <img src="${it.src}" alt="${it.title}" />
+          <div class="info">
+            <strong>${it.title}</strong>
+            <span class="tag">#${it.tag}</span>
+          </div>
+        </article>
+      `).join("");
+    };
+    renderGallery();
+
+    const lightbox = $("#lightbox");
+    const lightboxImg = $("#lightboxImg");
+    const lightboxDesc = $("#lightboxDesc");
+    const lightboxIndex = $("#lightboxIndex");
+    const openOriginal = $("#openOriginal");
+    const closeLightboxBtn = $("#closeLightbox");
+    const prevBtn = $("#prevImg");
+    const nextBtn = $("#nextImg");
+
+    let currentIndex = 0;
+
+    const openLightbox = (idx) => {
+      currentIndex = idx;
+      const item = galleryItems[currentIndex];
+      lightboxImg.src = item.src;
+      lightboxImg.alt = item.title;
+      lightboxDesc.textContent = item.title + " — " + item.tag;
+      lightboxIndex.textContent = (currentIndex + 1) + "/" + galleryItems.length;
+      openOriginal.href = item.src;
+      lightbox.classList.add("open");
+      document.body.style.overflow = "hidden";
+    };
+    const closeLightbox = () => {
+      lightbox.classList.remove("open");
+      document.body.style.overflow = "";
+    };
+    const nextImage = () => openLightbox((currentIndex + 1) % galleryItems.length);
+    const prevImage = () => openLightbox((currentIndex - 1 + galleryItems.length) % galleryItems.length);
+
+    galleryGrid.addEventListener("click", (e) => {
+      const card = e.target.closest(".card");
+      if (!card) return;
+      openLightbox(Number(card.dataset.index));
+    });
+    galleryGrid.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        const card = e.target.closest(".card");
+        if (!card) return;
+        e.preventDefault();
+        openLightbox(Number(card.dataset.index));
+      }
+    });
+
+    closeLightboxBtn.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+    nextBtn.addEventListener("click", nextImage);
+    prevBtn.addEventListener("click", prevImage);
+    document.addEventListener("keydown", (e) => {
+      if (!lightbox.classList.contains("open")) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+    });
+
+    // =========================
+    // TODO-список з localStorage
+    // =========================
+    const todoKey = "todos-302";
+    const todoTitle = $("#todoTitle");
+    const addTodo = $("#addTodo");
+    const todoList = $("#todoList");
+    const clearDone = $("#clearDone");
+    const exportBtn = $("#exportTodos");
+    const importBtn = $("#importTodos");
+    const importInput = $("#importInput");
+
+    let todos = load(todoKey, [
+      { id: crypto.randomUUID(), title: "Підготувати презентацію", done: false, created: Date.now() },
+      { id: crypto.randomUUID(), title: "Здати лабораторну №2", done: true, created: Date.now() - 86400000 }
+    ]);
+
+    const renderTodos = () => {
+      if (!todos.length) {
+        todoList.innerHTML = `<div class="tag">Поки що порожньо. Додай перше завдання!</div>`;
+        return;
+      }
+      todoList.innerHTML = todos.map(t => `
+        <div class="todo-item ${t.done ? "done" : ""}" data-id="${t.id}">
+          <input type="checkbox" ${t.done ? "checked" : ""} aria-label="Позначити як виконано" />
+          <div>
+            <div class="title">${t.title}</div>
+            <div class="meta">Створено: ${new Date(t.created).toLocaleString("uk-UA")}</div>
+          </div>
+          <div style="display:flex; gap:6px">
+            <button class="icon-btn" data-action="edit" title="Редагувати" aria-label="Редагувати">✎</button>
+            <button class="icon-btn" data-action="delete" title="Видалити" aria-label="Видалити">🗑</button>
+          </div>
+        </div>
+      `).join("");
+    };
+    const persistTodos = () => save(todoKey, todos);
+
+    addTodo.addEventListener("click", () => {
+      const title = (todoTitle.value || "").trim();
+      if (!title) return;
+      todos.unshift({ id: crypto.randomUUID(), title, done: false, created: Date.now() });
+      todoTitle.value = "";
+      persistTodos(); renderTodos();
+    });
+    todoTitle.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") addTodo.click();
+    });
+
+    todoList.addEventListener("click", (e) => {
+      const root = e.target.closest(".todo-item");
+      if (!root) return;
+      const id = root.dataset.id;
+      if (e.target.matches('input[type="checkbox"]')) {
+        const t = todos.find(x => x.id === id);
+        if (t) t.done = e.target.checked;
+        persistTodos(); renderTodos();
+      }
+      if (e.target.dataset.action === "delete") {
+        todos = todos.filter(x => x.id !== id);
+        persistTodos(); renderTodos();
+      }
+      if (e.target.dataset.action === "edit") {
+        const t = todos.find(x => x.id === id);
+        if (!t) return;
+        const next = prompt("Нове формулювання:", t.title);
+        if (next && next.trim()) {
+          t.title = next.trim();
+          persistTodos(); renderTodos();
+        }
+      }
+    });
+
+    clearDone.addEventListener("click", () => {
+      todos = todos.filter(t => !t.done);
+      persistTodos(); renderTodos();
+    });
+
+    exportBtn.addEventListener("click", () => {
+      const blob = new Blob([JSON.stringify(todos, null, 2)], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "todos-302.json";
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    importBtn.addEventListener("click", () => importInput.click());
+    importInput.addEventListener("change", async (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      try {
+        const text = await file.text();
+        const data = JSON.parse(text);
+        if (!Array.isArray(data)) throw new Error("Невірний формат");
+        todos = data.map(t => ({
+          id: t.id ?? crypto.randomUUID(),
+          title: String(t.title ?? "").slice(0, 200),
+          done: Boolean(t.done),
+          created: Number(t.created ?? Date.now())
+        }));
+        persistTodos(); renderTodos();
+      } catch {
+        alert("Не вдалося імпортувати файл. Перевір формат JSON.");
+      } finally {
+        importInput.value = "";
+      }
+    });
+
+    renderTodos();
+
+    // =========================
+    // Форма: валідація та фейкове надсилання
+    // =========================
+    const form = $("#contactForm");
+    const formMsg = $("#formMsg");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      const errors = [];
+
+      if (!data.name || String(data.name).trim().length < 2) errors.push("Вкажи ім’я (мінімум 2 символи).");
+      if (!data.email || !/^\S+@\S+\.\S+$/.test(data.email)) errors.push("Вкажи коректний email.");
+      if (!data.message || String(data.message).trim().length < 5) errors.push("Напиши повідомлення (мінімум 5 символів).");
+
+      if (errors.length) {
+        formMsg.className = "msg error show";
+        formMsg.textContent = errors.join(" ");
+        return;
+      }
+
+      formMsg.className = "msg show";
+      formMsg.textContent = "Надсилаємо...";
+      await new Promise(r => setTimeout(r, 900));
+
+      formMsg.className = "msg success show";
+      formMsg.textContent = "Дякуємо! Ми відповімо на email найближчим часом.";
+      form.reset();
+    });
+
+    // =========================
+    // Плавна прокрутка для якірних посилань
+    // =========================
+    $$('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (e) => {
+        const id = a.getAttribute("href")?.slice(1);
+        const el = id ? document.getElementById(id) : null;
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+
+    // =========================
+    // Крихітний easter-egg
+    // =========================
+    let secret = "";
+    document.addEventListener("keydown", (e) => {
+      secret = (secret + e.key).slice(-6);
+      if (secret.toLowerCase().includes("focus")) {
+        const chip = document.querySelector(".chip");
+        if (chip) {
+          chip.textContent = "🔥 Ти значно ближче, ніж здається";
+          chip.style.background = "color-mix(in oklab, var(--warning) 14%, transparent)";
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

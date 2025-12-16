@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Commands - Команди Git</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #2980b9;
+        }
+
+        .commands-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .commands-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .command-item {
+            background: #f8f9fa;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .command-code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+
+        .command-description {
+            color: #555;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Git Commands Reference</h1>
+            <p class="subtitle">Довідник команд Git для веб-розробки</p>
+        </header>
+
+        <nav>
+            <a href="12.html">Головна</a>
+            <a href="registration.html">Реєстрація</a>
+            <a href="git_commands.html">Git Commands</a>
+        </nav>
+
+        <main>
+            <!-- Basic Git Commands Section -->
+            <section class="commands-section">
+                <h2>Основні команди Git</h2>
+                
+                <div class="command-item">
+                    <div class="command-code">git init</div>
+                    <div class="command-description">Ініціалізація нового Git репозиторію</div>
+                </div>
+
+                <div class="command-item">
+                    <div class="command-code">git status</div>
+                    <div class="command-description">Перевірка статусу файлів у репозиторії</div>
+                </div>
+
+                <div class="command-item">
+                    <div class="command-code">git add .</div>
+                    <div class="command-description">Додавання всіх файлів до індексу</div>
+                </div>
+
+                <div class="command-item">
+                    <div class="command-code">git add filename</div>
+                    <div class="command-description">Додавання конкретного файлу до індексу</div>
+                </div>
+
+                <div class="command-item">
+                    <div class="command-code">git commit -m "message"</div>
+                    <div class="command-description">Створення коміту з повідомленням</div>
+                </div>
+
+                <div class="command-item">
+                    <div class="command-code">git log</div>
+                    <div class="command-description">Перегляд історії комітів</div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Lab 1.12 - Git Commands Documentation</p>
+        </footer>
+    </div>
+</body>
+</html>

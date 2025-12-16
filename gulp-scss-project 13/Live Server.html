@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 Мультфільми - Головна сторінка</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Навігація */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Геройська секція */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Сітка мультфільмів */
+        .cartoons-section {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .cartoons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .cartoon-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cartoon-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .cartoon-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .cartoon-content {
+            padding: 1.5rem;
+        }
+
+        .cartoon-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .cartoon-title:hover {
+            color: #764ba2;
+        }
+
+        .cartoon-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .watch-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .watch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Секція персонажів */
+        .characters-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .character-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .character-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .character-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .character-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .character-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Футер */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Стилі модального вікна */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .video-container {
+            width: 100%;
+            height: 300px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        /* Адаптивність */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .cartoons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .characters-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">🎬 Мультфільми</a>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Головна</a></li>
+                        <li><a href="#cartoons">Мультфільми</a></li>
+                        <li><a href="#characters">Персонажі</a></li>
+                        <li><a href="#news">Новинки</a></li>
+                        <li><a href="#contacts">Контакти</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Світ Мультфільмів</h1>
+                <p>Відкрийте для себе найкращі анімаційні пригоди для всієї родини!</p>
+            </div>
+        </section>
+
+        <section id="cartoons" class="cartoons-section">
+            <div class="container">
+                <h2 class="section-title">Популярні Мультфільми</h2>
+                <div class="cartoons-grid">
+                    <div class="cartoon-card">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=250&fit=crop&crop=center"
+                            alt="Пригоди Веселунів" class="cartoon-image">
+                        <div class="cartoon-content">
+                            <a href="#" class="cartoon-title">Пригоди Веселунів</a>
+                            <p class="cartoon-description">Захоплююча історія про дружбу та пригоди маленьких героїв у
+                                казковому світі.</p>
+                            <button class="watch-btn" onclick="openVideo('Пригоди Веселунів')">Дивитися</button>
+                        </div>
+                    </div>
+
+                    <div class="cartoon-card">
+                        <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400&h=250&fit=crop&crop=center"
+                            alt="Міньйони: Нові пригоди" class="cartoon-image">
+                        <div class="cartoon-content">
+                            <a href="#" class="cartoon-title">Міньйони: Нові пригоди</a>
+                            <p class="cartoon-description">Кумедні жовті створіння знову готові розсмішити вас своїми
+                                витівками.</p>
+                            <button class="watch-btn" onclick="openVideo('Міньйони: Нові пригоди')">Дивитися</button>
+                        </div>
+                    </div>
+
+                    <div class="cartoon-card">
+                        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=250&fit=crop&crop=center"
+                            alt="Роботи майбутнього" class="cartoon-image">
+                        <div class="cartoon-content">
+                            <a href="#" class="cartoon-title">Роботи майбутнього</a>
+                            <p class="cartoon-description">Фантастична історія про роботів, які навчилися дружити з
+                                людьми.</p>
+                            <button class="watch-btn" onclick="openVideo('Роботи майбутнього')">Дивитися</button>
+                        </div>
+                    </div>
+
+                    <div class="cartoon-card">
+                        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=400&h=250&fit=crop&crop=center"
+                            alt="Космічні пригоди" class="cartoon-image">
+                        <div class="cartoon-content">
+                            <a href="#" class="cartoon-title">Космічні пригоди</a>
+                            <p class="cartoon-description">Подорож у далекі галактики з відважними космічними героями.
+                            </p>
+                            <button class="watch-btn" onclick="openVideo('Космічні пригоди')">Дивитися</button>
+                        </div>
+                    </div>
+
+                    <div class="cartoon-card">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=250&fit=crop&crop=center"
+                            alt="Лісові друзі" class="cartoon-image">
+                        <div class="cartoon-content">
+                            <a href="#" class="cartoon-title">Лісові друзі</a>
+                            <p class="cartoon-description">Історії про дружбу лісових тварин та їхні захоплюючі пригоди.
+                            </p>
+                            <button class="watch-btn" onclick="openVideo('Лісові друзі')">Дивитися</button>
+                        </div>
+                    </div>
+
+                    <div class="cartoon-card">
+                        <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=250&fit=crop&crop=center"
+                            alt="Морські пригоди" class="cartoon-image">
+                        <div class="cartoon-content">
+                            <a href="#" class="cartoon-title">Морські пригоди</a>
+                            <p class="cartoon-description">Підводний світ повний дивовижних створінь та незабутніх
+                                пригод.</p>
+                            <button class="watch-btn" onclick="openVideo('Морські пригоди')">Дивитися</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="characters" class="characters-section">
+            <div class="container">
+                <h2 class="section-title">Улюблені Персонажі</h2>
+                <div class="characters-grid">
+                    <div class="character-card">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=120&h=120&fit=crop&crop=face"
+                            alt="Веселун" class="character-image">
+                        <h3 class="character-name">Веселун</h3>
+                        <p class="character-description">Головний герой, який завжди знаходить вихід з будь-якої
+                            ситуації</p>
+                    </div>
+
+                    <div class="character-card">
+                        <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=120&h=120&fit=crop&crop=face"
+                            alt="Стюарт" class="character-image">
+                        <h3 class="character-name">Стюарт</h3>
+                        <p class="character-description">Найкумедніший міньйон з великим серцем</p>
+                    </div>
+
+                    <div class="character-card">
+                        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=120&h=120&fit=crop&crop=face"
+                            alt="Робот-помічник" class="character-image">
+                        <h3 class="character-name">Робот-помічник</h3>
+                        <p class="character-description">Розумний робот, який допомагає у всіх справах</p>
+                    </div>
+
+                    <div class="character-card">
+                        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=120&h=120&fit=crop&crop=face"
+                            alt="Космічний капітан" class="character-image">
+                        <h3 class="character-name">Космічний капітан</h3>
+                        <p class="character-description">Відважний лідер космічної експедиції</p>
+                    </div>
+
+                    <div class="character-card">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=120&h=120&fit=crop&crop=face"
+                            alt="Лісовий мудрець" class="character-image">
+                        <h3 class="character-name">Лісовий мудрець</h3>
+                        <p class="character-description">Мудра сова, яка знає всі таємниці лісу</p>
+                    </div>
+
+                    <div class="character-card">
+                        <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=120&h=120&fit=crop&crop=face"
+                            alt="Морська принцеса" class="character-image">
+                        <h3 class="character-name">Морська принцеса</h3>
+                        <p class="character-description">Прекрасна русалка, захисниця океану</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Мультфільми. Всі права захищені. Створено з ❤️ для любителів анімації.</p>
+        </div>
+    </footer>
+
+    <!-- Модальне вікно для відеоплеєра -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeVideo()">&times;</span>
+            <h2 id="modalTitle">Назва мультфільму</h2>
+            <div class="video-container">
+                <p>🎬 Відео завантажується...</p>
+                <p>Тут буде відтворюватися обраний мультфільм</p>
+            </div>
+            <p>Дякуємо за вибір! Незабаром ви зможете насолоджуватися переглядом.</p>
+            <button class="watch-btn" onclick="closeVideo()" style="margin-top: 1rem;">Закрити</button>
+        </div>
+    </div>
+
+    <script>
+        // Плавна прокрутка для навігаційних посилань
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Додати ефекти при наведенні на картки
+            const cards = document.querySelectorAll('.cartoon-card, .character-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Додати ефекти кліку на кнопки
+            const buttons = document.querySelectorAll('.watch-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function () {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        });
+
+        // Функції для модального вікна відео
+        function openVideo(cartoonTitle) {
+            const modal = document.getElementById('videoModal');
+            const modalTitle = document.getElementById('modalTitle');
+
+            modalTitle.textContent = cartoonTitle;
+            modal.style.display = 'block';
+
+            // Додати анімацію
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.opacity = '1';
+            }, 10);
+
+            // Симулювати завантаження
+            const videoContainer = modal.querySelector('.video-container');
+            videoContainer.innerHTML = `
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎬</div>
+                    <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">Завантаження "${cartoonTitle}"...</p>
+                    <div style="width: 100%; height: 4px; background: #f0f0f0; border-radius: 2px; overflow: hidden;">
+                        <div style="width: 0%; height: 100%; background: linear-gradient(135deg, #667eea, #764ba2); animation: loading 3s ease-in-out infinite;"></div>
+                    </div>
+                </div>
+            `;
+
+            // Додати CSS для анімації завантаження
+            if (!document.querySelector('#loadingStyle')) {
+                const style = document.createElement('style');
+                style.id = 'loadingStyle';
+                style.textContent = `
+                    @keyframes loading {
+                        0% { width: 0%; }
+                        50% { width: 70%; }
+                        100% { width: 100%; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+
+            // Через 3 секунди показати повідомлення "готово"
+            setTimeout(() => {
+                videoContainer.innerHTML = `
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+                        <p style="font-size: 1.2rem; color: #667eea;">"${cartoonTitle}" готовий до перегляду!</p>
+                        <p style="margin-top: 1rem; color: #666;">Натисніть кнопку нижче, щоб почати перегляд</p>
+                    </div>
+                `;
+            }, 3000);
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        // Закрити модальне вікно при кліку поза ним
+        window.onclick = function (event) {
+            const modal = document.getElementById('videoModal');
+            if (event.target === modal) {
+                closeVideo();
+            }
+        }
+
+        // Розважальні повідомлення в консолі
+        console.log('🎬 Ласкаво просимо до світу мультфільмів!');
+        console.log('✨ Всі кнопки та посилання працюють!');
+        console.log('🚀 Сайт повністю інтерактивний!');
+    </script>
+</body>
+
+</html>

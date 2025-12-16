@@ -1,0 +1,8 @@
+// Головний SCSS файл
+// Імпорт всіх частинних файлів
+@import 'variables';
+@import 'mixins';
+@import 'base';
+@import 'layout';
+@import 'components';
+@import 'responsive';

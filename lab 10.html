@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адаптивна веб-сторінка | Євгеній Мороз, 302-ТН</title>
+    <style>
+        /* Загальні стилі */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        /* Стилі для Float версії */
+        .float-container {
+            overflow: auto;
+            margin-bottom: 20px;
+        }
+
+        .float-container .header,
+        .float-container .footer {
+            background-color: #3498db;
+            border: 1px solid #ecf0f1;
+            padding: 15px;
+            margin-bottom: 3px;
+            text-align: center;
+        }
+
+        .float-container .sidebar {
+            width: 25%;
+            background-color: #2ecc71;
+            border: 1px solid #ecf0f1;
+            padding: 15px;
+            float: left;
+            margin-right: 3px;
+            margin-bottom: 3px;
+        }
+
+        .float-container .content {
+            width: 74%;
+            background-color: #e74c3c;
+            border: 1px solid #ecf0f1;
+            padding: 15px;
+            float: right;
+            margin-bottom: 3px;
+        }
+
+        .float-container .clear {
+            clear: both;
+        }
+
+        /* Стилі для Flexbox версії */
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .flex-container .header,
+        .flex-container .footer {
+            background-color: #9b59b6;
+            border: 1px solid #ecf0f1;
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 3px;
+        }
+
+        .flex-container .sidebar {
+            background-color: #f1c40f;
+            border: 1px solid #ecf0f1;
+            padding: 15px;
+            flex: 1;
+            margin-right: 3px;
+            margin-bottom: 3px;
+        }
+
+        .flex-container .content {
+            background-color: #1abc9c;
+            border: 1px solid #ecf0f1;
+            padding: 15px;
+            flex: 3;
+            margin-bottom: 3px;
+        }
+
+        /* Стилі для Grid версії */
+        .grid-container {
+            display: grid;
+            grid-template-areas: 
+                "header header"
+                "sidebar content"
+                "footer footer";
+            grid-template-columns: 1fr 3fr;
+            grid-gap: 3px;
+            margin-bottom: 20px;
+        }
+
+        .grid-container .header {
+            grid-area: header;
+            background-color: #e67e22;
+            border: 1px solid #ecf0f1;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .grid-container .sidebar {
+            grid-area: sidebar;
+            background-color: #34495e;
+            border: 1px solid #ecf0f1;
+            padding: 15px;
+            color: white;
+        }
+
+        .grid-container .content {
+            grid-area: content;
+            background-color: #d35400;
+            border: 1px solid #ecf0f1;
+            padding: 15px;
+            color: white;
+        }
+
+        .grid-container .footer {
+            grid-area: footer;
+            background-color: #7f8c8d;
+            border: 1px solid #ecf0f1;
+            padding: 15px;
+            text-align: center;
+            color: white;
+        }
+
+        /* Адаптивні медіа-запити */
+        @media (max-width: 500px) {
+            .float-container .sidebar,
+            .float-container .content {
+                width: 100%;
+                float: none;
+                margin-right: 0;
+            }
+
+            .flex-container {
+                flex-direction: column;
+            }
+
+            .flex-container .sidebar {
+                margin-right: 0;
+            }
+
+            .grid-container {
+                grid-template-areas: 
+                    "header"
+                    "sidebar"
+                    "content"
+                    "footer";
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 501px) and (max-width: 749px) {
+            .float-container .sidebar {
+                width: 30%;
+            }
+
+            .float-container .content {
+                width: 69%;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+
+        @media (min-width: 750px) and (max-width: 949px) {
+            .float-container .sidebar {
+                width: 25%;
+            }
+
+            .float-container .content {
+                width: 74%;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr 3fr;
+            }
+        }
+
+        @media (min-width: 950px) and (max-width: 1199px) {
+            .float-container .sidebar {
+                width: 20%;
+            }
+
+            .float-container .content {
+                width: 79%;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr 4fr;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .float-container .sidebar {
+                width: 15%;
+            }
+
+            .float-container .content {
+                width: 84%;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr 5fr;
+            }
+        }
+
+        /* Стилі для заголовків та навігації */
+        h1, h2, h3 {
+            margin-bottom: 15px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .nav-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-bottom: none;
+            margin: 0 5px;
+            border-radius: 5px 5px 0 0;
+            background-color: #f8f9fa;
+        }
+
+        .nav-tab.active {
+            background-color: #fff;
+            border-color: #ddd;
+            border-bottom-color: #fff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Адаптивна веб-сторінка</h1>
+        <p><strong>Студент:</strong> Євгеній Мороз</p>
+        <p><strong>Група:</strong> 302-ТН</p>
+        <p><strong>Спеціальність:</strong> Комп'ютерні науки</p>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="float">Float</div>
+            <div class="nav-tab" data-tab="flex">Flexbox</div>
+            <div class="nav-tab" data-tab="grid">Grid</div>
+        </div>
+
+        <!-- Float версія -->
+        <div id="float" class="tab-content active">
+            <h2>Версія з використанням Float</h2>
+            <div class="float-container">
+                <div class="header">Заголовок (Header)</div>
+                <div class="sidebar">Бічна панель (Sidebar)</div>
+                <div class="content">
+                    <h3>Основний вміст (Content)</h3>
+                    <p>Ця секція демонструє адаптивну верстку з використанням технології Float.</p>
+                    <p>При зміні розміру екрану блоки автоматично перебудовуються для оптимального відображення.</p>
+                </div>
+                <div class="clear"></div>
+                <div class="footer">Футер (Footer)</div>
+            </div>
+        </div>
+
+        <!-- Flexbox версія -->
+        <div id="flex" class="tab-content">
+            <h2>Версія з використанням Flexbox</h2>
+            <div class="flex-container">
+                <div class="header">Заголовок (Header)</div>
+                <div class="sidebar">Бічна панель (Sidebar)</div>
+                <div class="content">
+                    <h3>Основний вміст (Content)</h3>
+                    <p>Ця секція демонструє адаптивну верстку з використанням технології Flexbox.</p>
+                    <p>Flexbox забезпечує гнучкість у розташуванні елементів та спрощує створення адаптивних макетів.</p>
+                </div>
+                <div class="footer">Футер (Footer)</div>
+            </div>
+        </div>
+
+        <!-- Grid версія -->
+        <div id="grid" class="tab-content">
+            <h2>Версія з використанням Grid Layout</h2>
+            <div class="grid-container">
+                <div class="header">Заголовок (Header)</div>
+                <div class="sidebar">Бічна панель (Sidebar)</div>
+                <div class="content">
+                    <h3>Основний вміст (Content)</h3>
+                    <p>Ця секція демонструє адаптивну верстку з використанням технології CSS Grid.</p>
+                    <p>Grid Layout надає потужні інструменти для створення складних адаптивних макетів.</p>
+                </div>
+                <div class="footer">Футер (Footer)</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript для перемикання між вкладками
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.nav-tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Видаляємо активний клас з усіх вкладок
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Додаємо активний клас до поточної вкладки
+                    this.classList.add('active');
+                    
+                    // Приховуємо всі вмісти вкладок
+                    const tabContents = document.querySelectorAll('.tab-content');
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Показуємо вміст поточної вкладки
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота №9 – Мороз Євгеній, 302-ТН</title>
+    <style>
+        /* ===================== ЗАВДАННЯ 1 ===================== */
+        h2.style1 {
+            font-family: 'Arial', sans-serif;
+            font-size: 28pt;
+            color: #003366;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        h2.style2 {
+            font-family: 'Georgia', serif;
+            font-size: 26pt;
+            color: #8B0000;
+            text-align: left;
+            font-style: italic;
+            border-bottom: 3px solid #8B0000;
+            padding-bottom: 8px;
+        }
+
+        h2.style3 {
+            font-family: 'Courier New', monospace;
+            font-size: 24pt;
+            color: #006400;
+            text-align: right;
+            background-color: #f0f8ff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===================== ЗАВДАННЯ 2 ===================== */
+        .section-title {
+            font-family: 'Verdana', sans-serif;
+            font-size: 22pt;
+            font-weight: bold;
+            color: #2F4F4F;
+            text-align: center;
+            margin: 30px 0 15px;
+            text-decoration: underline;
+            text-transform: capitalize;
+        }
+
+        .main-text {
+            font-family: 'Times New Roman', serif;
+            font-size: 16pt;
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+            margin: 15px 5%;
+            text-indent: 4%;
+        }
+
+        .footnote {
+            font-family: 'Arial', sans-serif;
+            font-size: 12pt;
+            font-style: italic;
+            color: #555;
+            text-align: right;
+            margin: 20px 5% 40px;
+            border-top: 1px dashed #aaa;
+            padding-top: 8px;
+        }
+
+        /* ===================== ЗАВДАННЯ 3 – КНОПКИ З ІНФОРМАЦІЄЮ ===================== */
+        .menu-btn {
+            font-family: 'Tahoma', sans-serif;
+            font-size: 14pt;
+            font-weight: bold;
+            color: #FFFFFF;
+            background-color: #1E90FF;
+            padding: 14px 24px;
+            margin: 8px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            min-width: 150px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        .menu-btn:hover {
+            background-color: #0870D8;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            background-color: #005BBB;
+        }
+
+        .small {
+            font-family: 'Arial', sans-serif;
+            font-size: 10pt;
+            color: #777;
+            text-align: center;
+            margin: 30px 0;
+            font-style: italic;
+        }
+
+        /* Загальні стилі */
+        body {
+            background-color: #af8759;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #dbd3e29f;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #ddd, transparent);
+            margin: 50px 0;
+        }
+
+        /* Стиль для вікна з інформацією (необов’язково, але красиво) */
+        #info-box {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e6f7ff;
+            border-left: 5px solid #1890ff;
+            border-radius: 8px;
+            font-family: 'Arial', sans-serif;
+            font-size: 15pt;
+            color: #1e3a8a;
+            display: none;
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- ===================== ІНФОРМАЦІЯ ПРО СТУДЕНТА ===================== -->
+        <div class="small">
+            <strong>Мороз Євгеній</strong> | Група 302-ТН | Спеціальність: Комп’ютерні науки<br>
+            Лабораторна робота №9 – Управління стилем. Стильові класи.
+        </div>
+
+        <hr>
+
+        <!-- ===================== ЗАВДАННЯ 1 ===================== -->
+        <h2 class="style1">Завдання 1: Три стилі для H2</h2>
+
+        <h2 class="style1">Стиль 1: Синій, uppercase, центрований</h2>
+        <p class="main-text">Повторне використання класу <code>style1</code>.</p>
+
+        <h2 class="style2">Стиль 2: Червоний, італік, лінія</h2>
+        <p class="main-text">Повторне використання класу <code>style2</code>.</p>
+
+        <h2 class="style3">Стиль 3: Зелений, тінь, моноширинний</h2>
+        <p class="main-text">Повторне використання класу <code>style3</code>.</p>
+
+        <hr>
+
+        <!-- ===================== ЗАВДАННЯ 2 ===================== -->
+        <div class="section-title">Завдання 2: Вільні класи</div>
+
+        <p class="main-text">
+            Це основний текст. Використовується клас <code>.main-text</code>.
+        </p>
+
+        <p class="main-text">
+            Ще один абзац — той самий клас.
+        </p>
+
+        <p class="footnote">* Виноска №1: клас <code>.footnote</code>.</p>
+
+        <div class="section-title">Розділ: Веб-технології</div>
+
+        <p class="main-text">
+            HTML + CSS + JS = сучасний фронтенд.
+        </p>
+
+        <p class="footnote">** Джерело: курс веб-програмування, 2025</p>
+
+        <hr>
+
+        <!--  ЗАВДАННЯ 3 – КНОПКИ З ІНФОРМАЦІЄЮ  -->
+        <div class="section-title">Завдання 3: Кнопки з інформацією</div>
+
+        <!-- Верхнє меню -->
+        <div style="text-align: center; margin: 35px 0;">
+            <button class="menu-btn"
+                onclick="showInfo('Головна', 'Це головна сторінка сайту. Тут розміщено привітання та основні розділи.')">Головна</button>
+            <button class="menu-btn"
+                onclick="showInfo('Про нас', 'Інформація про команду, історію та місію компанії.')">Про нас</button>
+            <button class="menu-btn"
+                onclick="showInfo('Послуги', 'Перелік послуг: веб-розробка, дизайн, підтримка.')">Послуги</button>
+            <button class="menu-btn"
+                onclick="showInfo('Контакти', 'Телефон: +380 XX XXX XX XX | Email: info@company.com')">Контакти</button>
+            <button class="menu-btn"
+                onclick="showInfo('Блог', 'Останні статті про технології, поради та новини.')">Блог</button>
+        </div>
+
+        <!-- Нижнє меню -->
+        <div style="text-align: center; margin: 45px 0;">
+            <strong>Нижнє меню:</strong><br><br>
+            <button class="menu-btn" onclick="showInfo('Архів', 'Старі версії сайту та резервні копії.')">Архів</button>
+            <button class="menu-btn"
+                onclick="showInfo('Допомога', 'Інструкції, FAQ та підтримка користувачів.')">Допомога</button>
+            <button class="menu-btn" onclick="showInfo('FAQ', 'Відповіді на поширені запитання.')">FAQ</button>
+        </div>
+
+        <!-- Блок для відображення інформації -->
+        <div id="info-box">
+            <strong id="info-title"></strong><br>
+            <span id="info-text"></span>
+        </div>
+
+        <!-- Інформаційні повідомлення -->
+        <div class="small">
+            Поточна сторінка: <strong>MorozLab09.htm</strong> | Автор: Мороз Євгеній
+        </div>
+
+        <div class="small">
+            Оновлено: 24.10.2025 | © Група 302-ТН
+        </div>
+
+    </div>
+
+    <!-- ===================== JavaScript: Показ інформації ===================== -->
+    <script>
+        function showInfo(title, text) {
+            // Показуємо блок з інформацією
+            const infoBox = document.getElementById('info-box');
+            const infoTitle = document.getElementById('info-title');
+            const infoText = document.getElementById('info-text');
+
+            infoTitle.innerText = title;
+            infoText.innerText = text;
+            infoBox.style.display = 'block';
+
+            // Плавне прокручування до блоку
+            infoBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+
+</html>

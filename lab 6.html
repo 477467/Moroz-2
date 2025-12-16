@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<base href="https://krcawr3hjhqua.ok.kimi.link">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мороз Євгеній - Лабораторна робота №6</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.179.1/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.birds.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(45deg, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .image-map-container {
+            position: relative;
+            display: inline-block;
+        }
+        .map-area {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .map-area:hover {
+            filter: brightness(1.2);
+        }
+        .vanta-canvas {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: -1;
+        }
+        .content-overlay {
+            position: relative;
+            z-index: 10;
+        }
+        .floating-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <div id="vanta-background"></div>
+    
+    <div class="content-overlay">
+        <!-- Navigation -->
+        <nav class="bg-white/10 backdrop-blur-md border-b border-white/20 sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center">
+                        <h1 class="text-white text-xl font-bold">Мороз Євгеній - 302-ТН</h1>
+                    </div>
+                    <div class="flex space-x-8">
+                        <a href="#home" class="text-white hover:text-blue-200 transition-colors">Головна</a>
+                        <a href="#lab1" class="text-white hover:text-blue-200 transition-colors">Завдання 1</a>
+                        <a href="#lab2" class="text-white hover:text-blue-200 transition-colors">Завдання 2</a>
+                        <a href="#friends" class="text-white hover:text-blue-200 transition-colors">Друзі</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="pt-20 pb-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="floating-animation">
+                    <h1 class="hero-title text-6xl font-bold mb-6">Лабораторна робота №6</h1>
+                    <p class="text-white text-2xl mb-8">Картирування зображень. Визначення карти розбивки малюнка</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 max-w-2xl mx-auto">
+                    <img src="hero-banner.png" alt="Hero Banner" class="w-full h-48 object-cover rounded-lg mb-6">
+                    <p class="text-white text-lg mb-4"><strong>Студент:</strong> Мороз Євгеній</p>
+                    <p class="text-white text-lg mb-4"><strong>Група:</strong> 302-ТН</p>
+                    <p class="text-white text-lg mb-4"><strong>Спеціальність:</strong> Комп'ютерні науки</p>
+                    <p class="text-white text-lg"><strong>Місто:</strong> Полтава, Україна</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task 1 Section -->
+        <section id="lab1" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-white mb-4">Завдання 1</h2>
+                    <p class="text-white text-xl">Картируване зображення з гіперпосиланням</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-white mb-4">Водоспад у Полтаві</h3>
+                    <p class="text-white mb-6">Натисніть на зображення водоспаду, щоб перейти до додаткової інформації</p>
+                    
+                    <div class="text-center">
+                        <div class="image-map-container inline-block">
+                            <img src="waterfall.png" 
+                                 alt="Водоспад у Полтаві" 
+                                 class="rounded-lg shadow-2xl w-full max-w-2xl"
+                                 usemap="#waterfall-map">
+                            
+                            <map name="waterfall-map">
+                                <area shape="rect" 
+                                      coords="0,0,800,533" 
+                                      href="Primerlab05_1.html" 
+                                      alt="Водоспад у Полтаві"
+                                      title="Клікніть для детальної інформації про водоспад"
+                                      class="map-area">
+                            </map>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8">
+                    <h4 class="text-2xl font-bold text-white mb-4">📋 Технічні деталі:</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-white">
+                        <div>
+                            <h5 class="font-bold mb-2">Форма області:</h5>
+                            <p>Прямокутник (rect)</p>
+                        </div>
+                        <div>
+                            <h5 class="font-bold mb-2">Координати:</h5>
+                            <p>0,0,800,533</p>
+                        </div>
+                        <div>
+                            <h5 class="font-bold mb-2">Гіперпосилання:</h5>
+                            <p>Primerlab05_1.html</p>
+                        </div>
+                        <div>
+                            <h5 class="font-bold mb-2">Атрибут title:</h5>
+                            <p>Водоспад у Полтаві</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task 2 Section -->
+        <section id="lab2" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-white mb-4">Завдання 2</h2>
+                    <p class="text-white text-xl">Карта зі спливаючими заголовками</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-4">Пам'ятки Полтави</h3>
+                    <p class="text-white mb-6">Наведіть курсор на різні частини зображення, щоб побачити інформацію про пам'ятки</p>
+                    
+                    <div class="text-center mb-8">
+                        <div class="image-map-container inline-block">
+                            <img src="poltava-attractions.png" 
+                                 alt="Пам'ятки Полтави" 
+                                 class="rounded-lg shadow-2xl w-full max-w-4xl"
+                                 usemap="#attractions-map">
+                            
+                            <map name="attractions-map">
+                                <!-- Прямокутні області для різних пам'яток -->
+                                <area shape="rect" 
+                                      coords="100,50,300,200" 
+                                      href="#" 
+                                      alt="Біла альтанка"
+                                      title="Біла альтанка - архітектурна перлина Полтави, збудована в 1909 році"
+                                      class="map-area">
+                                
+                                <area shape="rect" 
+                                      coords="400,100,600,250" 
+                                      href="#" 
+                                      alt="Музей Полтавської битви"
+                                      title="Музей Полтавської битви - історичний комплекс, присвячений подіям 1709 року"
+                                      class="map-area">
+                                
+                                <area shape="circle" 
+                                      coords="700,150,80" 
+                                      href="#" 
+                                      alt="Собор Успіння"
+                                      title="Собор Успіння - духовна пам'ятка, головний храм Полтави"
+                                      class="map-area">
+                                
+                                <area shape="rect" 
+                                      coords="150,350,400,500" 
+                                      href="#" 
+                                      alt="Полтавська галушка"
+                                      title="Полтавська галушка - символ міста, смачна традиційна страва"
+                                      class="map-area">
+                                
+                                <area shape="circle" 
+                                      coords="550,400,70" 
+                                      href="#" 
+                                      alt="Котел героїв"
+                                      title="Котел героїв - історична пам'ятка на честь загиблих воїнів"
+                                      class="map-area">
+                                
+                                <!-- Додаткові області для демонстрації різних форм -->
+                                <area shape="poly" 
+                                      coords="50,300,120,280,100,350,30,370" 
+                                      href="#" 
+                                      alt="Парк Перемоги"
+                                      title="Парк Перемоги - мальовничий парк у центрі Полтави"
+                                      class="map-area">
+                            </map>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white/20 backdrop-blur-md rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-2">🔷</div>
+                            <h4 class="text-white font-bold mb-2">Прямокутники</h4>
+                            <p class="text-white text-sm">Використовуються для позначення будівель та пам'яток</p>
+                        </div>
+                        <div class="bg-white/20 backdrop-blur-md rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-2">🔴</div>
+                            <h4 class="text-white font-bold mb-2">Кола</h4>
+                            <p class="text-white text-sm">Підходять для позначення круглих об'єктів</p>
+                        </div>
+                        <div class="bg-white/20 backdrop-blur-md rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-2">📐</div>
+                            <h4 class="text-white font-bold mb-2">Багатокутники</h4>
+                            <p class="text-white text-sm">Можна використовувати для складних форм</p>
+                        </div>
+                        <div class="bg-white/20 backdrop-blur-md rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-2">⚡</div>
+                            <h4 class="text-white font-bold mb-2">Інтерактивність</h4>
+                            <p class="text-white text-sm">Спливаючі заголовки при наведенні</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Friends Section -->
+        <section id="friends" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-white mb-4">Друзі</h2>
+                    <p class="text-white text-xl">Мої друзі та колеги з університету</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Friend 1 -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 card-hover">
+                        <div class="w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center pulse-animation">
+                            <span class="text-white text-2xl font-bold">АК</span>
+                        </div>
+                        <h3 class="text-white text-xl font-bold text-center mb-2">Андрій Коваленко</h3>
+                        <p class="text-white text-center mb-4">Група 302-ТН, Комп'ютерні науки</p>
+                        <div class="text-center">
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors" onclick="showFriendInfo('Андрій Коваленко')">
+                                📞 Контакт
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Friend 2 -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 card-hover">
+                        <div class="w-20 h-20 bg-gradient-to-r from-green-400 to-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center pulse-animation">
+                            <span class="text-white text-2xl font-bold">ІП</span>
+                        </div>
+                        <h3 class="text-white text-xl font-bold text-center mb-2">Ірина Петренко</h3>
+                        <p class="text-white text-center mb-4">Група 302-ТН, Комп'ютерні науки</p>
+                        <div class="text-center">
+                            <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition-colors" onclick="showFriendInfo('Ірина Петренко')">
+                                📧 Email
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Friend 3 -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 card-hover">
+                        <div class="w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full mx-auto mb-4 flex items-center justify-center pulse-animation">
+                            <span class="text-white text-2xl font-bold">СМ</span>
+                        </div>
+                        <h3 class="text-white text-xl font-bold text-center mb-2">Сергій Мельник</h3>
+                        <p class="text-white text-center mb-4">Група 302-ТН, Комп'ютерні науки</p>
+                        <div class="text-center">
+                            <button class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition-colors" onclick="showFriendInfo('Сергій Мельник')">
+                                💬 Чат
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional friends info -->
+                <div class="mt-12 bg-white/10 backdrop-blur-md rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-4 text-center">Наша група 302-ТН</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-white text-center">
+                        <div>
+                            <div class="text-4xl mb-2">👨‍💻</div>
+                            <h4 class="font-bold mb-2">25 студентів</h4>
+                            <p>Вивчаємо комп'ютерні науки</p>
+                        </div>
+                        <div>
+                            <div class="text-4xl mb-2">🏫</div>
+                            <h4 class="font-bold mb-2">ПНТУ</h4>
+                            <p>Полтавський національний технічний університет</p>
+                        </div>
+                        <div>
+                            <div class="text-4xl mb-2">🎓</div>
+                            <h4 class="font-bold mb-2">Спеціальність</h4>
+                            <p>122 - Комп'ютерні науки</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Info Section -->
+        <section class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8">
+                    <h2 class="text-3xl font-bold text-white mb-6 text-center">Технічні деталі виконання</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="text-white">
+                            <h3 class="text-xl font-bold mb-4">📋 Використані теги:</h3>
+                            <ul class="space-y-2">
+                                <li><code>&lt;map&gt;</code> - для створення карти</li>
+                                <li><code>&lt;area&gt;</code> - для визначення областей</li>
+                                <li><code>&lt;img&gt;</code> - для зображень</li>
+                                <li><code>usemap</code> - для прив'язки карти</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="text-white">
+                            <h3 class="text-xl font-bold mb-4">🎯 Атрибути:</h3>
+                            <ul class="space-y-2">
+                                <li><code>shape</code> - форма області</li>
+                                <li><code>coords</code> - координати</li>
+                                <li><code>href</code> - гіперпосилання</li>
+                                <li><code>title</code> - спливаюча підказка</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black/20 backdrop-blur-md border-t border-white/20 py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <p class="text-white">© 2025 Мороз Євгеній - Лабораторна робота №6. Всі права захищені.</p>
+                <p class="text-white mt-2">Полтава, Україна | Група 302-ТН | Комп'ютерні науки</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Initialize Vanta.js background
+        VANTA.BIRDS({
+            el: "#vanta-background",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            backgroundColor: 0x1a202c,
+            color1: 0x667eea,
+            color2: 0x764ba2,
+            birdSize: 1.20,
+            wingSpan: 25.00,
+            speedLimit: 4.00,
+            separation: 20.00,
+            alignment: 20.00,
+            cohesion: 20.00,
+            quantity: 3.00
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Show friend info function
+        function showFriendInfo(friendName) {
+            const messages = {
+                'Андрій Коваленко': `📞 Контактна інформація:\nТелефон: +380 50 123 45 67\nEmail: andriy.kovalenko@university.edu\nTelegram: @andriy_kovalenko`,
+                'Ірина Петренко': `📧 Email для зв'язку:\niryna.petrenko@university.edu\n\n📱 Соціальні мережі:\nInstagram: @iryna_petrenko\nFacebook: Iryna Petrenko`,
+                'Сергій Мельник': `💬 Месенджери для спілкування:\nTelegram: @serhiy_melnyk\nViber: +380 67 987 65 43\n\n📧 Email:\nserhiy.melnyk@university.edu`
+            };
+            
+            alert(messages[friendName] || `Інформація про ${friendName}:\n\nСтудент групи 302-ТН\nСпеціальність: Комп'ютерні науки\nМісто: Полтава, Україна`);
+        }
+
+        // Add hover effects for map areas
+        document.querySelectorAll('.map-area').forEach(area => {
+            area.addEventListener('mouseenter', function() {
+                this.style.filter = 'brightness(1.3)';
+            });
+            
+            area.addEventListener('mouseleave', function() {
+                this.style.filter = 'brightness(1)';
+            });
+        });
+
+        // Add card hover effects
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+                this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // Add click tracking for map areas
+        document.querySelectorAll('.map-area').forEach(area => {
+            area.addEventListener('click', function(e) {
+                if (this.href && this.href.includes('#')) {
+                    e.preventDefault();
+                    const title = this.getAttribute('title');
+                    if (title) {
+                        alert(`Ви натиснули на область: ${title}`);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+// Стилі макету
+
+.container {
+    @include container;
+}
+
+// Шапка
+.header {
+    background: $background-color;
+    box-shadow: $shadow-sm;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    .container {
+        @include flex-between;
+        padding: $spacing-md $container-padding;
+    }
+
+    .logo {
+        font-size: $font-size-large;
+        font-weight: $font-weight-bold;
+
+        a {
+            color: $primary-color;
+            text-decoration: none;
+        }
+    }
+
+    .navigation {
+        .nav-menu {
+            @include flex-center;
+            gap: $spacing-lg;
+
+            li {
+                a {
+                    color: $text-color;
+                    font-weight: $font-weight-medium;
+                    padding: $spacing-sm $spacing-md;
+                    border-radius: $border-radius-sm;
+                    transition: $transition-fast;
+
+                    &:hover {
+                        background-color: $background-light;
+                        color: $primary-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Основний вміст
+.main {
+    min-height: calc(100vh - 200px);
+}
+
+// Геройська секція
+.hero {
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    color: white;
+    padding: $spacing-xxl 0;
+    text-align: center;
+
+    h1 {
+        margin-bottom: $spacing-lg;
+        font-size: 3rem;
+    }
+
+    p {
+        font-size: $font-size-large;
+        margin-bottom: $spacing-xl;
+        opacity: 0.9;
+    }
+}
+
+// Секції
+.featured-cartoons,
+.characters {
+    padding: $spacing-xxl 0;
+
+    h2 {
+        text-align: center;
+        margin-bottom: $spacing-xl;
+        color: $text-color;
+    }
+}
+
+.featured-cartoons {
+    background-color: $background-light;
+}
+
+// Футер
+.footer {
+    background-color: $text-color;
+    color: white;
+    padding: $spacing-xl 0 $spacing-md;
+
+    .footer-content {
+        @include grid(3, $spacing-xl);
+        margin-bottom: $spacing-lg;
+
+        @include mobile {
+            @include grid(1, $spacing-lg);
+        }
+    }
+
+    .footer-section {
+        h4 {
+            color: $primary-color;
+            margin-bottom: $spacing-md;
+        }
+
+        p {
+            margin-bottom: $spacing-sm;
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: $spacing-md;
+
+            a {
+                color: white;
+                opacity: 0.8;
+                transition: $transition-fast;
+
+                &:hover {
+                    opacity: 1;
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: $spacing-md;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        opacity: 0.6;
+    }
+}

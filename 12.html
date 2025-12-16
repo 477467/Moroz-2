@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЛЗ 1.10 - Flex та Grid Layout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #2980b9;
+        }
+
+        .flex-section, .grid-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .flex-item {
+            background: #3498db;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .flex-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .grid-item {
+            background: #e74c3c;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Лабораторна робота 1.10</h1>
+            <p>Вивчення Flexbox та CSS Grid технологій</p>
+        </header>
+
+        <nav>
+            <a href="index.html">Головна</a>
+            <a href="registration.html">Реєстрація</a>
+            <a href="git_commands.html">Git Commands</a>
+        </nav>
+
+        <main>
+            <section class="flex-section">
+                <h2>Flexbox Layout</h2>
+                <p>Демонстрація можливостей Flexbox для створення гнучких макетів</p>
+                <div class="flex-container">
+                    <div class="flex-item">Елемент 1</div>
+                    <div class="flex-item">Елемент 2</div>
+                    <div class="flex-item">Елемент 3</div>
+                </div>
+            </section>
+
+            <section class="grid-section">
+                <h2>CSS Grid Layout</h2>
+                <p>Демонстрація можливостей CSS Grid для створення складних макетів</p>
+                <div class="grid-container">
+                    <div class="grid-item">Grid 1</div>
+                    <div class="grid-item">Grid 2</div>
+                    <div class="grid-item">Grid 3</div>
+                    <div class="grid-item">Grid 4</div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Лабораторна робота з веб-технологій</p>
+        </footer>
+    </div>
+</body>
+</html>

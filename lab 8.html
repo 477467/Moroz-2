@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    <title>Лабораторна робота №8 - Створення стилів Web-сторінки</title>
+    
+    <!-- Глобальні стилі для завдання 2 та 3 -->
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 50%, #fff3e0 100%);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .main-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .task-section {
+            margin: 40px 0;
+            padding: 25px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .task-title {
+            color: #34495e;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        /* Стилі для завдання 2 - глобальні стилі */
+        .task2 p {
+            color: #2c3e50;
+            font-size: 16px;
+            margin: 15px 0;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            background: #ecf0f1;
+        }
+        
+        .task2 div {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        
+        /* Стилі для завдання 3 - садові квіти */
+        .flowers-title {
+            font-weight: bold;
+            color: darkred;
+            font-size: 35pt;
+            text-align: center;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .flowers-content {
+            color: black;
+            font-style: italic;
+            font-size: 14pt;
+            text-indent: 2%;
+            text-align: justify;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+        
+        .flower-name {
+            font-weight: bold;
+            color: purple;
+            font-size: 20pt;
+            margin: 25px 0 15px 0;
+            text-decoration: underline;
+        }
+        
+        .table-of-contents {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #ddd;
+        }
+        
+        .toc-title {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 18pt;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .toc-list {
+            list-style-type: decimal;
+            padding-left: 30px;
+        }
+        
+        .toc-list li {
+            margin: 8px 0;
+            font-size: 16pt;
+        }
+        
+        .toc-list a {
+            color: purple;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .toc-list a:hover {
+            text-decoration: underline;
+            color: darkred;
+        }
+        
+        .back-to-top {
+            display: inline-block;
+            margin: 15px 0;
+            padding: 8px 15px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 12pt;
+            transition: background 0.3s;
+        }
+        
+        .back-to-top:hover {
+            background: #2980b9;
+        }
+        
+        .navigation {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #34495e;
+            border-radius: 10px;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            margin: 0 15px;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title" id="top">Лабораторна робота №8<br>Створення стилів Web-сторінки</h1>
+        
+        <!-- Навігація -->
+        <div class="navigation">
+            <a href="#task1" class="nav-link">Завдання 1</a>
+            <a href="#task2" class="nav-link">Завдання 2</a>
+            <a href="#task3" class="nav-link">Завдання 3</a>
+        </div>
+
+        <!-- Завдання 1: Стильові призначення для шрифтів -->
+        <div class="task-section" id="task1">
+            <h2 class="task-title">Завдання 1: Стильові призначення для шрифтів та тексту</h2>
+            
+            <p style="font-family: Arial, sans-serif; color: #e74c3c; font-size: 18px; font-weight: bold;">
+                Цей абзац використовує внутрішні стилі (inline styles) з шрифтом Arial, червоним кольором та жирним накресленням.
+            </p>
+            
+            <p style="font-family: 'Courier New', monospace; color: #27ae60; font-size: 16px; font-style: italic; text-decoration: underline;">
+                Даний параграф оформлений моноширинним шрифтом Courier New, зеленим кольором, курсивом та підкресленням.
+            </p>
+            
+            <p style="font-family: Georgia, serif; color: #8e44ad; font-size: 20px; text-align: center; letter-spacing: 2px;">
+                Цей текст використовує шрифт Georgia, фіолетовий колір, центрування та збільшений міжбуквенний інтервал.
+            </p>
+            
+            <p style="font-family: Verdana, sans-serif; color: #f39c12; font-size: 14px; text-align: justify; line-height: 2.0; text-shadow: 1px 1px 2px #333;">
+                Останній абзац першого завдання демонструє використання шрифту Verdana, помаранчевого кольору, 
+                вирівнювання по ширині, збільшеного міжрядкового інтервалу та тіні тексту. Цей приклад показує, 
+                як можна комбінувати різні стильові властивості для створення унікального вигляду тексту.
+            </p>
+        </div>
+
+        <!-- Завдання 2: Глобальні стилі -->
+        <div class="task-section task2" id="task2">
+            <h2 class="task-title">Завдання 2: Єдність стильового оформлення через глобальні стилі</h2>
+            
+            <p>Цей параграф оформлений за допомогою глобальних стилів, визначених у секції &lt;style&gt;. 
+            Всі параграфи в цьому розділі матимуть однаковий вигляд.</p>
+            
+            <div>Цей контейнер div також має єдиний стиль, визначений глобально. 
+            Це демонструє ефективність використання глобальних таблиць стилів.</div>
+            
+            <p>Другий параграф підтверджує єдність оформлення. Використання глобальних стилів 
+            дозволяє легко підтримувати консистентність дизайну на всій сторінці.</p>
+            
+            <div>Ще один div-контейнер з тим самим стилем. Це значно спрощує розробку 
+            та подальше редагування стилів веб-сторінки.</div>
+            
+            <p>Третій параграф завершує демонстрацію глобальних стилів. Зміна стилю в одному місці 
+            автоматично вплине на всі елементи відповідного типу.</p>
+        </div>
+
+        <!-- Завдання 3: Багаторічні садові квіти -->
+        <div class="task-section" id="task3">
+            <h1 class="flowers-title">Багаторічні садові квіти</h1>
+            
+            <!-- Зміст -->
+            <div class="table-of-contents">
+                <div class="toc-title">Зміст розглянутих квітів:</div>
+                <ol class="toc-list">
+                    <li><a href="#peony">Півонія</a></li>
+                    <li><a href="#iris">Ірис</a></li>
+                    <li><a href="#rose">Троянда</a></li>
+                    <li><a href="#chrysanthemum">Хризантема</a></li>
+                    <li><a href="#lavender">Лаванда</a></li>
+                </ol>
+            </div>
+
+            <!-- Півонія -->
+            <h2 class="flower-name" id="peony">Півонія</h2>
+            <div class="flowers-content">
+                Півонія - це розкішна багаторічна рослина, яка славиться своїми великими, ароматними квітами. 
+                Ці чудові квіти можуть бути білими, рожевими, червоними або жовтими. Півонії цвітуть навесні 
+                та на початку літа, створюючи неперевершене видовище в саду. Вони можуть рости на одному місці 
+                десятиліттями, з кожним роком стаючи все більш пишними. Півонії віддають перевагу сонячним 
+                місцям з добре дренованим ґрунтом та потребують мінімального догляду після встановлення.
+            </div>
+            <a href="#top" class="back-to-top">↑ Повернутися до початку</a>
+
+            <!-- Ірис -->
+            <h2 class="flower-name" id="iris">Ірис</h2>
+            <div class="flowers-content">
+                Ірис - елегантна багаторічна рослина з характерними мечоподібними листками та вишуканими квітами. 
+                Існує понад 300 видів ірисів, які відрізняються за кольором, розміром та формою. Найпоширеніші 
+                кольори включають фіолетовий, синій, жовтий, білий та рожевий. Ірис символізує мудрість, 
+                мужність та захоплення. Ці рослини добре адаптуються до різних умов вирощування, але найкраще 
+                ростуть на сонячних ділянках з помірно вологим ґрунтом. Цвітуть ірис зазвичай у травні-червні.
+            </div>
+            <a href="#top" class="back-to-top">↑ Повернутися до початку</a>
+
+            <!-- Троянда -->
+            <h2 class="flower-name" id="rose">Троянда</h2>
+            <div class="flowers-content">
+                Троянда по праву вважається королевою квітів. Це багаторічна рослина, яка може бути кущовою, 
+                плетистою або штамбовою. Троянди мають неперевершений аромат та різноманітність форм і кольорів. 
+                Від ніжно-рожевих до насичено-червоних, від білосніжних до майже чорних - палітра кольорів 
+                троянд вражає своїм розмаїттям. При правильному догляді троянди можуть цвісти з весни до 
+                пізньої осені. Вони потребують регулярного поливу, підживлення та обрізки, але винагороджують 
+                садівника неперевершеною красою та ароматом.
+            </div>
+            <a href="#top" class="back-to-top">↑ Повернутися до початку</a>
+
+            <!-- Хризантема -->
+            <h2 class="flower-name" id="chrysanthemum">Хризантема</h2>
+            <div class="flowers-content">
+                Хризантема - це символ осені та довголіття. Ця багаторічна рослина радує своїм цвітінням, коли 
+                більшість інших квітів вже відцвіли. Хризантеми мають надзвичайно різноманітні форми квітів: 
+                від простих ромашкоподібних до складних махрових куль. Кольорова гама включає жовтий, білий, 
+                рожевий, червоний, фіолетовий та бронзовий кольори. Хризантеми невибагливі в догляді, 
+                стійкі до холоду та можуть цвісти до перших заморозків. Вони чудово підходять для створення 
+                осінніх композицій та букетів.
+            </div>
+            <a href="#top" class="back-to-top">↑ Повернутися до початку</a>
+
+            <!-- Лаванда -->
+            <h2 class="flower-name" id="lavender">Лаванда</h2>
+            <div class="flowers-content">
+                Лаванда - ароматична багаторічна рослина, яка славиться своїм неповторним запахом та лікувальними 
+                властивостями. Її сріблясто-зелене листя та фіолетово-сині суцвіття створюють чудовий контраст 
+                в саду. Лаванда цвіте протягом всього літа, приваблюючи бджіл та метеликів. Ця рослина 
+                надзвичайно посухостійка та невибаглива, що робить її ідеальною для садів у середземноморському 
+                стилі. Крім декоративних якостей, лаванда широко використовується в ароматерапії, косметології 
+                та кулінарії. Її аромат має заспокійливу дію та допомагає боротися зі стресом.
+            </div>
+            <a href="#top" class="back-to-top">↑ Повернутися до початку</a>
+        </div>
+
+        <!-- Підвал сторінки -->
+        <div style="text-align: center; margin-top: 50px; padding: 20px; background: #34495e; color: white; border-radius: 10px;">
+            <p style="margin: 0; font-size: 14px;">
+                Лабораторна робота №8 виконана згідно з усіма вимогами<br>
+                Демонстрація внутрішніх, глобальних стилів та стильових призначень
+            </p>
+        </div>
+    </div>
+</body>
+</html>

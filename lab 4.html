@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Лабораторна робота №4 — Рядки, що біжать</title>
+  <meta name="author" content="Мороз Євгеній">
+  <style>
+    body {
+      background: #f2f6fb;
+      font-family: "Verdana", Arial, sans-serif;
+      color: #111;
+      margin: 20px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+    .header h1 { margin: 0; font-size: 26px; }
+    .header .info { margin-top: 6px; font-size: 14px; color: #333; }
+
+    .band {
+      height: 50px;
+      line-height: 50px;
+      margin: 12px 0;
+      overflow: hidden;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .marq-text {
+      font-weight: 600;
+      font-size: 18px;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      letter-spacing: 0.3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Лабораторна робота №4 — Рядки, що біжать</h1>
+    <div class="info">
+      Студент: <strong>Мороз Євгеній</strong> &nbsp;|&nbsp; Група: <strong>302-ТН</strong> &nbsp;|&nbsp; Спеціальність: <strong>Комп'ютерні науки</strong>
+    </div>
+  </div>
+
+  <div class="band" style="background:#FFDAB9;">
+    <marquee class="marq-text" behavior="alternate" width="85%" height="50">
+      <span style="color:#800000; font-style:italic;">
+        Приклад 1 — Текст коливається з боку в бік (behavior="alternate").
+      </span>
+    </marquee>
+  </div>
+
+  <div class="band" style="background:#E0FFFF;">
+    <marquee class="marq-text" behavior="scroll" direction="left" scrollamount="6" width="90%" height="50" loop="-1">
+      <span style="color:#004080;">
+        Приклад 2 — Текст пробігає справа наліво і з'являється знову (direction="left", behavior="scroll").
+      </span>
+    </marquee>
+  </div>
+
+  <div class="band" style="background:#F0E68C;">
+    <marquee class="marq-text" behavior="slide" direction="right" width="80%" height="50" loop="1">
+      <span style="color:#2F4F4F; font-family: 'Georgia', serif;">
+        Приклад 3 — Текст пробігає зліва направо і зупиняється (behavior="slide", direction="right").
+      </span>
+    </marquee>
+  </div>
+
+  <div class="band" style="background:#D8BFD8;">
+    <marquee class="marq-text" behavior="scroll" direction="left" scrollamount="4" scrolldelay="40" width="88%" height="50" loop="-1">
+      <span style="color:#4B0082;">
+        Приклад 4 — Рядок із меншим затримуванням (scrolldelay="40") — швидше.
+      </span>
+    </marquee>
+  </div>
+
+  <div class="band" style="background:#E6E6FA;">
+    <marquee class="marq-text" behavior="scroll" direction="left" scrollamount="2" scrolldelay="200" width="92%" height="50" loop="-1">
+      <span style="color:#2E8B57;">
+        Приклад 5 — Рядок із більшим затримуванням (scrolldelay="200") — повільніше.
+      </span>
+    </marquee>
+  </div>
+</body>
+</html>

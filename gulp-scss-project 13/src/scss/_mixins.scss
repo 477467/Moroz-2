@@ -1,0 +1,92 @@
+// SCSS Міксини
+
+// Флексбокс міксини
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+// Сіткові міксини
+@mixin grid($columns: 1, $gap: $spacing-md) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $gap;
+}
+
+// Міксин для кнопок
+@mixin button-style($bg-color: $primary-color, $text-color: white, $padding: $spacing-sm $spacing-md) {
+    background-color: $bg-color;
+    color: $text-color;
+    padding: $padding;
+    border: none;
+    border-radius: $border-radius-md;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: $transition-normal;
+    font-weight: $font-weight-medium;
+
+    &:hover {
+        background-color: darken($bg-color, 10%);
+        transform: translateY(-2px);
+        box-shadow: $shadow-md;
+    }
+}
+
+// Міксин для карток
+@mixin card-style {
+    background: $background-color;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-sm;
+    overflow: hidden;
+    transition: $transition-normal;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: $shadow-lg;
+    }
+}
+
+// Міксин для контейнера
+@mixin container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 $container-padding;
+}
+
+// Міксини медіа-запитів
+@mixin mobile {
+    @media (max-width: #{$breakpoint-sm - 1px}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: $breakpoint-sm) and (max-width: #{$breakpoint-md - 1px}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: $breakpoint-md) {
+        @content;
+    }
+}
+
+@mixin large-desktop {
+    @media (min-width: $breakpoint-lg) {
+        @content;
+    }
+}

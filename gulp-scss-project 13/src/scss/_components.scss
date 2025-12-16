@@ -1,0 +1,113 @@
+// Стилі компонентів
+
+// Кнопки
+.btn {
+    @include button-style;
+
+    &.btn-primary {
+        @include button-style($primary-color, white, $spacing-md $spacing-lg);
+        font-size: $font-size-large;
+    }
+
+    &.btn-secondary {
+        @include button-style($secondary-color, white);
+    }
+}
+
+// Картки
+.cartoon-card {
+    @include card-style;
+
+    img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .card-content {
+        padding: $spacing-lg;
+
+        h3 {
+            margin-bottom: $spacing-sm;
+
+            a {
+                color: $text-color;
+
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+        }
+
+        p {
+            color: $text-light;
+            margin-bottom: 0;
+
+            a {
+                color: $text-light;
+
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+}
+
+.character-card {
+    @include card-style;
+    text-align: center;
+    padding: $spacing-lg;
+
+    img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 0 auto $spacing-md;
+        object-fit: cover;
+    }
+
+    h4 {
+        color: $primary-color;
+        margin-bottom: $spacing-sm;
+    }
+
+    p {
+        color: $text-light;
+        font-size: $font-size-small;
+        margin-bottom: 0;
+    }
+}
+
+// Сітки
+.cartoons-grid {
+    @include grid(3, $spacing-xl);
+
+    @include mobile {
+        @include grid(1, $spacing-lg);
+    }
+
+    @include tablet {
+        @include grid(2, $spacing-lg);
+    }
+}
+
+.characters-grid {
+    @include grid(4, $spacing-lg);
+
+    @include mobile {
+        @include grid(2, $spacing-md);
+    }
+
+    @include tablet {
+        @include grid(3, $spacing-md);
+    }
+}
+
+// Навігація
+.nav-menu {
+    @include mobile {
+        flex-direction: column;
+        gap: $spacing-sm;
+    }
+}

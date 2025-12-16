@@ -1,0 +1,76 @@
+// Базові стилі
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: $font-size-base;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: $font-family-primary;
+    line-height: $line-height-base;
+    color: $text-color;
+    background-color: $background-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-family-heading;
+    line-height: $line-height-heading;
+    margin-bottom: $spacing-md;
+    font-weight: $font-weight-bold;
+}
+
+h1 {
+    font-size: $font-size-h1;
+}
+
+h2 {
+    font-size: $font-size-h2;
+}
+
+h3 {
+    font-size: $font-size-h3;
+}
+
+h4 {
+    font-size: $font-size-h4;
+}
+
+p {
+    margin-bottom: $spacing-md;
+}
+
+a {
+    color: $primary-color;
+    text-decoration: none;
+    transition: $transition-fast;
+
+    &:hover {
+        color: darken($primary-color, 15%);
+    }
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
